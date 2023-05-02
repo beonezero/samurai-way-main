@@ -1,4 +1,5 @@
 import React from "react";
+import MyPosts from "./Profile/MyPosts/MyPosts";
 
 const Profile = () => {
     return (
@@ -17,8 +18,7 @@ const Profile = () => {
                     NEW post
                 </div>
                 <div>
-                    <div>Post 1</div>
-                    <div>Post 2</div>
+                    <MyPosts/>
                 </div>
             </div>
 
