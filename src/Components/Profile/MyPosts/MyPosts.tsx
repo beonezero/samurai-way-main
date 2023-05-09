@@ -1,8 +1,13 @@
 import React from "react";
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
+import {PostsType, ProfilePageType} from "../../../redux/state";
 
-const MyPosts = () => {
+
+const MyPosts = (props: ProfilePageType) => {
+
+    let postsElements =
+        props.posts.map(p => <Post message={p.message} sum={p.likesCount}/>)
     return (
         <div className={s.postsBlock}>
             <h3>my post</h3>
@@ -13,9 +18,7 @@ const MyPosts = () => {
                 <button>Add post</button>
             </div>
             <div className={s.posts}>
-                <Post message={"Hi! How are you?"} sum={24}/>
-                <Post message={"It's my first post "} sum={11}/>
-                <Post message={"Do you fine?"} sum={21}/>
+                {postsElements}
             </div>
         </div>
 

@@ -1,43 +1,23 @@
 import s from "./Dialogs.module.css"
-import {NavLink} from "react-router-dom";
+import React from "react";
+import {DialogItem} from "./DialogItem/DialogsItem";
+import {Message} from "./Message/Message";
+import {DialogsPageType, RootStateType} from "../../redux/state";
 
-type DialogItemType = {
-    name: string
-    id: number
-}
+export const Dialogs = (props: DialogsPageType) => {
 
-type MessageType = {
-    message: string
-}
-const DialogItem = (props: DialogItemType) => {
-    let path = "/dialogs/" + props.id
-    return (
-        <div className={s.dialog + " " + s.active}>
-            <NavLink to={path}>{props.name}</NavLink>
-        </div>
-    )
-}
+    let dialogsElements = props.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>)
 
-const Message = (props: MessageType) => {
-    return (
-        <div className={s.message}>{props.message}</div>
-    )
-}
-export const Dialogs = () => {
+    let messagesElements = props.messages.map(m => <Message message={m.message}/>)
+
     return (
         <div className={s.dialogs}>
+
             <div className={s.dialogsItems}>
-                <DialogItem name={"Yauheni"} id={1}/>
-                <DialogItem name={"Sophia"} id={2}/>
-                <DialogItem name={"Eva"} id={3}/>
-                <DialogItem name={"Ivan"} id={4}/>
-                <DialogItem name={"Alex"} id={5}/>
-                <DialogItem name={"Artemii"} id={6}/>
+                {dialogsElements}
             </div>
             <div className={s.messages}>
-                <Message message={"Hello"}/>
-                <Message message={"How do you do?"}/>
-                <Message message={"Where are you from"}/>
+                {messagesElements}
             </div>
         </div>
     )
