@@ -1,13 +1,15 @@
+import {rerenderEntireThree} from "./render";
+
 export type PostsType = {
     id: number
     message: string
     likesCount: number
 }
-type DialogsType = {
+export type DialogsType = {
     id: number
     name: string
 }
-type MessagesType = {
+export type MessagesType = {
     id: number
     message: string
 }
@@ -15,19 +17,23 @@ type MessagesType = {
 
 export type ProfilePageType = {
     posts: Array<PostsType>
+    newPostText: string
 }
 export type DialogsPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
 
 }
+export type SideBarType = {}
+
 
 export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
+    sideBar: SideBarType
 }
 
-export let state : RootStateType = {
+export let state: RootStateType = {
     profilePage: {
         posts: [
             {id: 1, message: "Hi! How are you?", likesCount: 32},
@@ -37,7 +43,8 @@ export let state : RootStateType = {
             {id: 5, message: "Are you ready?", likesCount: 27},
             {id: 6, message: "Do you sleep?", likesCount: 106},
             {id: 7, message: "Good morning!!", likesCount: 80}
-        ]
+        ],
+        newPostText: ""
     },
 
     dialogsPage: {
@@ -58,5 +65,23 @@ export let state : RootStateType = {
             {id: 5, message: "Freeday!!!!!!"},
             {id: 6, message: "Work and travel ?"}
         ]
-    }
+    },
+    sideBar: {}
+}
+
+export const addMessage = (postMessage: string) => {
+    const newMessage: MessagesType = {id: 7, message: postMessage}
+    state.dialogsPage.messages.push(newMessage)
+    rerenderEntireThree(state)
+}
+
+export const addPost = (postMessage: string) => {
+    const newPost: PostsType = {id: 7, message: postMessage, likesCount: 0}
+    state.profilePage.posts.push(newPost)
+    rerenderEntireThree(state)
+}
+
+export const updateNewPostText = (newText: string) => {
+    state.profilePage.newPostText = newText
+    rerenderEntireThree(state)
 }
