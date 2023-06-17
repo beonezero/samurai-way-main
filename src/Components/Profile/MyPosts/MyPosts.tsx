@@ -6,7 +6,7 @@ import {addMessage, PostsType, ProfilePageType} from "../../../redux/state";
 type MyPostsPropsType = {
     newPropsText: string
     profilePage: ProfilePageType
-    addPost: (postMessage: string) => void
+    addPost: () => void
     updateNewPostText: (newText: string) => void
 }
 
@@ -16,12 +16,7 @@ const MyPosts = (props: MyPostsPropsType) => {
         props.profilePage.posts.map(p => <Post message={p.message} sum={p.likesCount}/>)
 
     const addPost = () => {
-       let text = newPostElement.current?.value
-        if (text) {
-            props.addPost(text)
-            props.updateNewPostText("")
-        }
-
+            props.addPost()
     }
 
     const onPostChange = () => {
