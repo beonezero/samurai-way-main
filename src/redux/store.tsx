@@ -1,5 +1,6 @@
 import {addMessageAC, dialogsReducer, updateNewMessageTextAC} from "./dialogs-reducer";
 import {addPostAC, profileReducer, updateNewPostTextAC} from "./profile-reducer";
+import {sideBarReducer} from "./sideBar-reducer";
 
 export type PostsType = {
     id: number
@@ -98,6 +99,7 @@ export const store: StoreType = {
     dispatch(action: ActionType) {
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
         this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.sideBar = sideBarReducer(this._state.sideBar, action)
 
         this._callSubscriber(this._state)
     }
