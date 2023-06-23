@@ -1,8 +1,9 @@
 import s from "./Dialogs.module.css"
-import React, {RefObject} from "react";
+import React, {ChangeEvent, RefObject} from "react";
 import {DialogItem} from "./DialogItem/DialogsItem";
 import {Message} from "./Message/Message";
-import {ActionType, addMessageAC, DialogsType, MessagesType,} from "../../redux/state";
+import {ActionType, DialogsType, MessagesType} from "../../redux/store";
+import {addMessageAC, updateNewMessageTextAC} from "../../redux/dialogs-reducer";
 
 type AddPostType = {
     addPost: (postMessage: string) => void
@@ -11,6 +12,7 @@ type AddPostType = {
 type DialogsPropsType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
+    newMessageText: string
     dispatch: (action: ActionType) => void
 
 }
@@ -21,11 +23,12 @@ export const Dialogs = (props: DialogsPropsType) => {
 
     let messagesElements = props.messages.map(m => <Message message={m.message}/>)
 
-    const refAreaMessage = React.createRef<HTMLTextAreaElement>()
+
+    const onChangeMessageText = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.dispatch(updateNewMessageTextAC(e.currentTarget.value))
+    }
     const addMessage = () => {
-        if (refAreaMessage.current) {
-            props.dispatch(addMessageAC(refAreaMessage.current.value))
-        }
+        props.dispatch(addMessageAC())
     }
 
     return (
@@ -35,10 +38,11 @@ export const Dialogs = (props: DialogsPropsType) => {
                 {dialogsElements}
             </div>
             <div className={s.messages}>
-                {messagesElements}
+                <div>{messagesElements}</div>
             </div>
             <div>
-                <textarea ref={refAreaMessage}></textarea>
+                <textarea placeholder={"type your message"} onChange={onChangeMessageText}
+                          value={props.newMessageText}></textarea>
                 <button onClick={addMessage}>Send</button>
             </div>
         </div>

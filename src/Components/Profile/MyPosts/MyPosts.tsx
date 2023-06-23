@@ -1,7 +1,8 @@
 import React, {RefObject} from "react";
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
-import {ActionType, addPostAC, ProfilePageType, updateNewPostTextAC} from "../../../redux/state";
+import {ActionType, ProfilePageType,} from "../../../redux/store";
+import {addPostAC, updateNewPostTextAC} from "../../../redux/profile-reducer";
 
 type MyPostsPropsType = {
     newPropsText: string
@@ -15,7 +16,7 @@ export const MyPosts = (props: MyPostsPropsType) => {
         props.profilePage.posts.map(p => <Post message={p.message} sum={p.likesCount}/>)
 
     const addPost = () => {
-            props.dispatch(addPostAC())
+        props.dispatch(addPostAC())
     }
 
     const onPostChange = () => {
