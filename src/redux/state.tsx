@@ -39,20 +39,21 @@ export type StoreType = {
     dispatch: (action: ActionType) => void
 }
 
-export type ActionType = AddPostActionType | UpdateNewPostTextActionType | AddMessageActionType
+export type ActionType = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC> | ReturnType<typeof addMessageAC>
 
-export type AddPostActionType = {
-    type: "ADD-POST"
-}
-export type UpdateNewPostTextActionType = {
-    type: "UPDATE-NEW-POST-TEXT"
-    newText: string
+
+export const addPostAC = () => {
+    return {type: "ADD-POST"} as const
 }
 
-export type AddMessageActionType = {
-    type: "UPDATE-NEW-MESSAGE-TEXT"
-    postMessage: string
+export const updateNewPostTextAC = (newText: string) => {
+    return {type: "UPDATE-NEW-POST-TEXT", newText: newText} as const
 }
+
+export const addMessageAC = (postMessage: string) => {
+    return {type: "ADD-MESSAGE", message: postMessage} as const
+}
+
 
 export const store: StoreType = {
     _state: {
@@ -110,11 +111,12 @@ export const store: StoreType = {
         } else if (action.type === "UPDATE-NEW-POST-TEXT") {
             this._state.profilePage.newPostText = action.newText
             this._callSubscriber(this._state)
-        } else if (action.type === "UPDATE-NEW-MESSAGE-TEXT") {
-            const newMessage: MessagesType = {id: 7, message: action.postMessage}
+        } else if (action.type === "ADD-MESSAGE") {
+            const newMessage: MessagesType = {id: 7, message: action.message}
             this._state.dialogsPage.messages.push(newMessage)
             this._callSubscriber(this._state)
         }
     }
 }
+
 
