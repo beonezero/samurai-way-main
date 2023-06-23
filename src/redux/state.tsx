@@ -1,7 +1,3 @@
-let rerenderEntireThree = (state: RootStateType) => {
-    console.log("state changed" + state)
-}
-
 export type PostsType = {
     id: number
     message: string
@@ -35,60 +31,90 @@ export type RootStateType = {
     sideBar: SideBarType
 }
 
-export let state: RootStateType = {
-    profilePage: {
-        posts: [
-            {id: 1, message: "Hi! How are you?", likesCount: 32},
-            {id: 2, message: "It's my first post ", likesCount: 13},
-            {id: 3, message: "Do you fine?", likesCount: 45},
-            {id: 4, message: "Do you?", likesCount: 51},
-            {id: 5, message: "Are you ready?", likesCount: 27},
-            {id: 6, message: "Do you sleep?", likesCount: 106},
-            {id: 7, message: "Good morning!!", likesCount: 80}
-        ],
-        newPostText: ""
+export type StoreType = {
+    _state: RootStateType
+    _callSubscriber: (state: RootStateType) => void
+    subscribe: (observer: (state: RootStateType) => void) => void
+    getState: () => RootStateType
+    dispatch: (action: ActionType) => void
+}
+
+export type ActionType = AddPostActionType | UpdateNewPostTextActionType | AddMessageActionType
+
+export type AddPostActionType = {
+    type: "ADD-POST"
+}
+export type UpdateNewPostTextActionType = {
+    type: "UPDATE-NEW-POST-TEXT"
+    newText: string
+}
+
+export type AddMessageActionType = {
+    type: "UPDATE-NEW-MESSAGE-TEXT"
+    postMessage: string
+}
+
+export const store: StoreType = {
+    _state: {
+        profilePage: {
+            posts: [
+                {id: 1, message: "Hi! How are you?", likesCount: 32},
+                {id: 2, message: "It's my first post ", likesCount: 13},
+                {id: 3, message: "Do you fine?", likesCount: 45},
+                {id: 4, message: "Do you?", likesCount: 51},
+                {id: 5, message: "Are you ready?", likesCount: 27},
+                {id: 6, message: "Do you sleep?", likesCount: 106},
+                {id: 7, message: "Good morning!!", likesCount: 80}
+            ],
+            newPostText: ""
+        },
+
+        dialogsPage: {
+            dialogs: [
+                {id: 1, name: "Yauheni"},
+                {id: 2, name: "Sophia"},
+                {id: 3, name: "Eva"},
+                {id: 4, name: "Ivan"},
+                {id: 5, name: "Alex"},
+                {id: 6, name: "Artemiy"}
+            ],
+
+            messages: [
+                {id: 1, message: "Hi"},
+                {id: 2, message: "How do you do?"},
+                {id: 3, message: "Where are you from"},
+                {id: 4, message: "9 May - this day win"},
+                {id: 5, message: "Freeday!!!!!!"},
+                {id: 6, message: "Work and travel ?"}
+            ]
+        },
+        sideBar: {}
+    },
+    _callSubscriber (state: RootStateType){
+        console.log("state changed" + state)
     },
 
-    dialogsPage: {
-        dialogs: [
-            {id: 1, name: "Yauheni"},
-            {id: 2, name: "Sophia"},
-            {id: 3, name: "Eva"},
-            {id: 4, name: "Ivan"},
-            {id: 5, name: "Alex"},
-            {id: 6, name: "Artemiy"}
-        ],
 
-        messages: [
-            {id: 1, message: "Hi"},
-            {id: 2, message: "How do you do?"},
-            {id: 3, message: "Where are you from"},
-            {id: 4, message: "9 May - this day win"},
-            {id: 5, message: "Freeday!!!!!!"},
-            {id: 6, message: "Work and travel ?"}
-        ]
+    getState(){
+        return this._state
     },
-    sideBar: {}
+    subscribe (observer: (state: RootStateType) => void) {
+        this._callSubscriber = observer
+    },
+    dispatch (action) {
+        if(action.type === "ADD-POST") {
+            const newPost: PostsType = {id: 7, message: this._state.profilePage.newPostText, likesCount: 0}
+            this._state.profilePage.posts.unshift(newPost)
+            this._state.profilePage.newPostText = ""
+            this._callSubscriber(this._state)
+        } else if (action.type === "UPDATE-NEW-POST-TEXT") {
+            this._state.profilePage.newPostText = action.newText
+            this._callSubscriber(this._state)
+        } else if (action.type === "UPDATE-NEW-MESSAGE-TEXT") {
+            const newMessage: MessagesType = {id: 7, message: action.postMessage}
+            this._state.dialogsPage.messages.push(newMessage)
+            this._callSubscriber(this._state)
+        }
+    }
 }
 
-export const addMessage = (postMessage: string) => {
-    const newMessage: MessagesType = {id: 7, message: postMessage}
-    state.dialogsPage.messages.push(newMessage)
-    rerenderEntireThree(state)
-}
-
-export const addPost = () => {
-    const newPost: PostsType = {id: 7, message: state.profilePage.newPostText, likesCount: 0}
-    state.profilePage.posts.push(newPost)
-    state.profilePage.newPostText = ""
-    rerenderEntireThree(state)
-}
-
-export const updateNewPostText = (newText: string) => {
-    state.profilePage.newPostText = newText
-    rerenderEntireThree(state)
-}
-
-export const subscribe = (observer: any) => {
-    rerenderEntireThree = observer
-}

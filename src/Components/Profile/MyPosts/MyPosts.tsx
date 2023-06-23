@@ -1,26 +1,25 @@
 import React, {RefObject} from "react";
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
-import {addMessage, PostsType, ProfilePageType} from "../../../redux/state";
+import {ActionType, ProfilePageType} from "../../../redux/state";
 
 type MyPostsPropsType = {
     newPropsText: string
     profilePage: ProfilePageType
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
+    dispatch: (action: ActionType) => void
 }
 
-const MyPosts = (props: MyPostsPropsType) => {
+export const MyPosts = (props: MyPostsPropsType) => {
 
     let postsElements =
         props.profilePage.posts.map(p => <Post message={p.message} sum={p.likesCount}/>)
 
     const addPost = () => {
-            props.addPost()
+            props.dispatch({type: "ADD-POST"})
     }
 
     const onPostChange = () => {
-        props.updateNewPostText(newPostElement.current!?.value)
+        props.dispatch({type: "UPDATE-NEW-POST-TEXT", newText: newPostElement.current!?.value})
     }
 
     const newPostElement = React.createRef<HTMLTextAreaElement>()
@@ -41,5 +40,3 @@ const MyPosts = (props: MyPostsPropsType) => {
 
     )
 }
-
-export default MyPosts
