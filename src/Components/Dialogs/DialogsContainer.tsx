@@ -3,12 +3,13 @@ import {RootStateType} from "../../redux/store";
 import {addMessageAC, updateNewMessageTextAC} from "../../redux/dialogs-reducer";
 import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
+import {AppStateType} from "../../redux/redux-store";
 
 // type DialogsContainerPropsType = {
 //     store: StoreType
 // }
 
-const mapStateToProps = (state: RootStateType) => {
+const mapStateToProps = (state: AppStateType) => {
     return {
         dialogsPage: state.dialogsPage
     }

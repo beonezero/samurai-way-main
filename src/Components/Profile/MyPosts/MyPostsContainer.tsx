@@ -1,14 +1,19 @@
 import React from "react";
-import {ActionType, ProfilePageType, RootStateType, StoreType,} from "../../../redux/store";
+import {ActionType, PostsType, ProfilePageType, RootStateType, StoreType,} from "../../../redux/store";
 import {addPostAC, updateNewPostTextAC} from "../../../redux/profile-reducer";
 import {MyPosts} from "./MyPosts";
 import {connect} from "react-redux";
+import {AppStateType} from "../../../redux/redux-store";
 
 // type MyPostsContainerPropsType = {
 //     store: StoreType
 // }
+type MapStatePropsType = {
+    posts: PostsType
+    newPostText: string
+}
 
-const mapStateToProps = (state: RootStateType) => {
+const mapStateToProps = (state: AppStateType) => {
     return {
         posts: state.profilePage.posts,
         newPostText: state.profilePage.newPostText
