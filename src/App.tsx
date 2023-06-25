@@ -4,7 +4,6 @@ import Header from "./Components/Header/Header";
 import Navbar from "./Components/Navbar/Navbar";
 import Profile from "./Components/Profile/Profile";
 import {Route} from "react-router-dom";
-import {StoreType} from "./redux/store";
 import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
 
 // type AppStateType = {

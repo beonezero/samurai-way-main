@@ -2,7 +2,7 @@ import s from "./Dialogs.module.css"
 import React, {ChangeEvent} from "react";
 import {DialogItem} from "./DialogItem/DialogsItem";
 import {Message} from "./Message/Message";
-import {DialogsPageType, DialogsType, MessagesType} from "../../redux/store";
+import {DialogsPageType} from "../../redux/store";
 
 type AddPostType = {
     addPost: (postMessage: string) => void
