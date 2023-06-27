@@ -1,0 +1,16 @@
+.selfi img {
+    width: 50px;
+    border-radius: 50%;
+}
+
+.button_follow {
+    background-color: green;
+    color: white;
+    padding: 5px;
+}
+
+.button_unfollow {
+    background-color: red;
+    color: white;
+    padding: 5px
+}

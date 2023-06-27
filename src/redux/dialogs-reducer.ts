@@ -1,4 +1,4 @@
-import {ActionType, DialogsPageType, MessagesType} from "./store";
+import {ActionType, DialogsPageType,} from "./store";
 
 const initialState: DialogsPageType = {
     dialogs: [
