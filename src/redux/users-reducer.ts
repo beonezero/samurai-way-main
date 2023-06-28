@@ -1,23 +1,27 @@
 import {ActionType} from "./store";
 
 export type UserType = {
-    id: number
-    photoUrl: string
-    followed: boolean
-    fullName: string
-    status: string
-    location: {
-        city: string
-        country: string
+    "name": string
+    "id": number,
+    "uniqueUrlName": null
+    "photos": {
+        "small": string
+        "large": string
     }
+    "status": any
+    "followed": boolean
 }
 
 export type InitialStateType = {
     users: UserType[]
+    totalCount: string
+    error: any
 }
 
 const initialState: InitialStateType = {
-    users: []
+    users: [],
+    totalCount: "",
+    error: null
 };
 
 export const usersReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
