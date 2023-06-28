@@ -3,41 +3,40 @@ import {addPostAC, profileReducer, updateNewPostTextAC} from "./profile-reducer"
 import {sideBarReducer} from "./sideBar-reducer";
 import {followAC, setUsersAC, unfollowAC} from "./users-reducer";
 
-export type PostsType = {
+type PostsType = {
     id: number
     message: string
     likesCount: number
 }
-export type DialogsType = {
+type DialogsType = {
     id: number
     name: string
 }
-export type MessagesType = {
+type MessagesType = {
     id: number
     message: string
 }
 
 
-export type ProfilePageType = {
+type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
 }
-export type DialogsPageType = {
+type DialogsPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
     newMessageBody: string
-
 }
 export type SideBarType = {}
 
 
-export type RootStateType = {
+type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
     sideBar: SideBarType
 }
 
-export type StoreType = {
+type StoreType = {
     _state: RootStateType
     _callSubscriber: (state: RootStateType) => void
     subscribe: (observer: (state: RootStateType) => void) => void

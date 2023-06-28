@@ -1,16 +1,10 @@
 import React from 'react';
-import {InitialUsersType, UsersType} from "../../redux/users-reducer";
 import s from "./users.module.css"
+import {UsersPropsType} from "./UsersContainer";
 
-type UsersPropsType = {
-    users: UsersType[]
-    follow: (id: number) => void
-    unfollow: (id: number) => void
-    setUsers: (users: UsersType[]) => void
-}
 
 export const Users = (props: UsersPropsType) => {
-    if (props.users.length === 0) {
+    if (props.usersPage.users.length === 0) {
         props.setUsers([
             {
                 id: 1,
@@ -41,7 +35,7 @@ export const Users = (props: UsersPropsType) => {
     return (
         <div>
             {
-                props.users.map(u => <div key={u.id}>
+                props.usersPage.users.map(u => <div key={u.id}>
                     <span>
                         <div className={s.selfi}><img src={u.photoUrl} alt=""/></div>
                         <div>
