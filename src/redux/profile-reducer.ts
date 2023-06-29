@@ -13,7 +13,7 @@ const initialState = {
         {id: 3, message: "Do you fine?", likesCount: 45},
         {id: 4, message: "Do you?", likesCount: 51},
         {id: 5, message: "Are you ready?", likesCount: 27},
-        {id: 6, message: "Do you sleep?", likesCount: 106},
+        {id: 6, message: "What do you think?", likesCount: 106},
         {id: 7, message: "Good morning!!", likesCount: 80}
     ] as PostsType[],
     newPostText: ""
