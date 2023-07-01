@@ -1,33 +1,33 @@
 import React from 'react';
 import s from "./users.module.css"
-import {UsersPropsType} from "./UsersContainer";
 import axios from "axios";
 import usersPhoto from "../../assets/images/user.svg"
+import {UsersPropsType} from "./UsersContainer";
 
 
-export const Users = (props: UsersPropsType) => {
-    const getUsers = () => {
-        if (props.usersPage.users.length === 0) {
-            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+export class Users extends React.Component <UsersPropsType> {
+    constructor(props: UsersPropsType) {
+        super(props);
+
+        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
                 debugger
-                props.setUsers(response.data.items)
+                this.props.setUsers(response.data.items)
             })
     }
-
-    }
+    render() {
     return (
         <div>
-            <button onClick={getUsers}>Get users</button>
+            {/*<button onClick={this.getUsers}>Get users</button>*/}
             {
-                props.usersPage.users.map(u => <div key={u.id}>
+                this.props.usersPage.users.map(u => <div key={u.id}>
                     <span>
                         <div className={s.selfi}><img src={u.photos.small != null ? u.photos.small : usersPhoto} alt=""/></div>
                         <div>
                             {u.followed
-                                ? <button onClick={() => props.unfollow(u.id)}
+                                ? <button onClick={() => this.props.unfollow(u.id)}
                                           className={s.button_unfollow}>Unfollow</button>
                                 :
-                                <button onClick={() => props.follow(u.id)} className={s.button_follow}>Follow</button>}
+                                <button onClick={() => this.props.follow(u.id)} className={s.button_follow}>Follow</button>}
                         </div>
                     </span>
                     <span>
@@ -44,4 +44,5 @@ export const Users = (props: UsersPropsType) => {
             }
         </div>
     );
+    }
 };
