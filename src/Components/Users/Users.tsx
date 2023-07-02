@@ -8,15 +8,25 @@ import {UsersPropsType} from "./UsersContainer";
 export class Users extends React.Component <UsersPropsType> {
 
     componentDidMount() {
-        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
             debugger
             this.props.setUsers(response.data.items)
         })
     }
 
     render() {
+        const pageCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
+
+        const pages: Array<number> = []
+        for (let i: number = 1; i <= pageCount; i++){
+            pages.push(i)
+        }
     return (
         <div>
+            <div>
+                {pages.map((p,i) => <span className={this.props.currentPage == p ? s.pagination_activ : ""} key={i}>{p}</span>
+               )}
+            </div>
             {
                 this.props.usersPage.users.map(u => <div key={u.id}>
                     <span>
@@ -44,4 +54,4 @@ export class Users extends React.Component <UsersPropsType> {
         </div>
     );
     }
-};
+}

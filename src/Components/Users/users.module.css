@@ -14,3 +14,7 @@
     color: white;
     padding: 5px
 }
+
+.pagination_activ {
+    font-weight: 700;
+}

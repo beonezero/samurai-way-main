@@ -14,12 +14,18 @@ export type UserType = {
 
 export type InitialStateType = {
     users: UserType[]
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
     totalCount: string
     error: any
 }
 
 const initialState: InitialStateType = {
     users: [],
+    pageSize: 5,
+    totalUsersCount: 21,
+    currentPage: 3,
     totalCount: "",
     error: null
 };

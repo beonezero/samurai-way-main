@@ -7,6 +7,9 @@ import {Dispatch} from "redux";
 
 type mapStateToPropsType = {
     usersPage: InitialStateType
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
 }
 
 type mapDispatchToPropsType = {
@@ -19,12 +22,17 @@ export type UsersPropsType = mapStateToPropsType & mapDispatchToPropsType
 
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
-        usersPage: state.usersPage
+        usersPage: state.usersPage,
+        pageSize: state.usersPage.pageSize,
+        totalUsersCount: state.usersPage.totalUsersCount,
+        currentPage: state.usersPage.currentPage
         }
     }
 
 
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
+
+
     return {
         follow: (id: number) => {
             dispatch(followAC(id))
