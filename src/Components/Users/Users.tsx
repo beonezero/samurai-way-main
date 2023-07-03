@@ -9,10 +9,17 @@ export class Users extends React.Component <UsersPropsType> {
 
     componentDidMount() {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
-            debugger
             this.props.setUsers(response.data.items)
+            this.props.setTotalUsersCount(response.data.totalCount)
         })
     }
+        onPageChanged = (currentPage: number) => {
+        this.props.setCurrentPage(currentPage)
+            axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
+                debugger
+                this.props.setUsers(response.data.items)
+            })
+        }
 
     render() {
         const pageCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
@@ -24,7 +31,7 @@ export class Users extends React.Component <UsersPropsType> {
     return (
         <div>
             <div>
-                {pages.map((p,i) => <span className={this.props.currentPage == p ? s.pagination_activ : ""} key={i}>{p}</span>
+                {pages.map((p,i) => <span onClick={() => this.onPageChanged(p)} className={s.pagination + " " + (this.props.currentPage == p ? s.pagination_active : "")} key={i}>{p}</span>
                )}
             </div>
             {

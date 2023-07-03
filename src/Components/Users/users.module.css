@@ -15,6 +15,15 @@
     padding: 5px
 }
 
-.pagination_activ {
+.pagination {
+    margin: 0 5px;
+    font-size: 20px;
+    font-weight: 300;
+    cursor: pointer;
+}
+
+.pagination_active {
     font-weight: 700;
+    zoom: 110%;
+    border-bottom: 1px solid black;
 }

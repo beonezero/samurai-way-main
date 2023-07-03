@@ -1,8 +1,15 @@
-import React from 'react';
+import React, {MouseEventHandler} from 'react';
 import {Users} from "./Users";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {followAC, InitialStateType, setUsersAC, unfollowAC, UserType} from "../../redux/users-reducer";
+import {
+    followAC,
+    InitialStateType,
+    setCurrentPageAC, setTotalUsersCountAC,
+    setUsersAC,
+    unfollowAC,
+    UserType
+} from "../../redux/users-reducer";
 import {Dispatch} from "redux";
 
 type mapStateToPropsType = {
@@ -16,6 +23,8 @@ type mapDispatchToPropsType = {
     follow: (id: number) => void
     unfollow: (id: number) => void
     setUsers: (users: UserType[]) => void
+    setCurrentPage: (currentPage: number) => void
+    setTotalUsersCount: (totalCount: number) => void
 }
 
 export type UsersPropsType = mapStateToPropsType & mapDispatchToPropsType
@@ -42,6 +51,12 @@ const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
         },
         setUsers: (users: UserType[]) => {
             dispatch(setUsersAC(users))
+        },
+        setCurrentPage: (currentPage: number) => {
+            dispatch(setCurrentPageAC(currentPage))
+        },
+        setTotalUsersCount: (totalCount: number) => {
+            dispatch(setTotalUsersCountAC(totalCount))
         }
     }
 }
