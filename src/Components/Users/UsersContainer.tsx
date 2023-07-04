@@ -9,10 +9,8 @@ import {
     unfollow,
     UserType
 } from "../../redux/users-reducer";
-import {Dispatch} from "redux";
 import axios from "axios";
 import Users from "./Users";
-import preloader from "../../assets/images/Spinner.svg"
 import Preloader from "../common/Preloader/Preloader";
 
 type mapStateToPropsType = {
