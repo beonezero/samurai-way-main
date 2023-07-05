@@ -1,5 +1,5 @@
 import {addMessageAC, dialogsReducer, updateNewMessageTextAC} from "./dialogs-reducer";
-import {addPostAC, profileReducer, updateNewPostTextAC} from "./profile-reducer";
+import {addPostAC, profileReducer, setUserProfile, updateNewPostTextAC} from "./profile-reducer";
 import {sideBarReducer} from "./sideBar-reducer";
 import {
     follow,
@@ -28,6 +28,7 @@ type MessagesType = {
 type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
+    profile: any
 }
 type DialogsPageType = {
     dialogs: Array<DialogsType>
@@ -54,7 +55,7 @@ type StoreType = {
 export type ActionType = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC>
     | ReturnType<typeof addMessageAC> | ReturnType<typeof updateNewMessageTextAC> | ReturnType<typeof follow>
     | ReturnType<typeof unfollow> | ReturnType<typeof setUsers> | ReturnType<typeof setCurrentPage>
-    | ReturnType<typeof setTotalUsersCount> | ReturnType<typeof toggleIsFetching>
+    | ReturnType<typeof setTotalUsersCount> | ReturnType<typeof toggleIsFetching> | ReturnType<typeof setUserProfile>
 
 
 
@@ -70,7 +71,8 @@ export const store: StoreType = {
                 {id: 6, message: "Do you sleep?", likesCount: 106},
                 {id: 7, message: "Good morning!!", likesCount: 80}
             ],
-            newPostText: ""
+            newPostText: "",
+            profile: {}
         },
 
         dialogsPage: {

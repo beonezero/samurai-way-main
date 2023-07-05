@@ -30,7 +30,7 @@ type mapDispatchToPropsType = {
     toggleIsFetching: (isFetching: boolean) => void
 }
 
-export class UsersContainer extends React.Component <UsersPropsType> {
+class UsersContainer extends React.Component <UsersPropsType> {
 
     componentDidMount() {
         this.props.toggleIsFetching(true)
