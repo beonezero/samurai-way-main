@@ -6,7 +6,7 @@ import {
     setCurrentPage,
     setTotalUsersCount,
     setUsers,
-    toggleIsFetching,
+    toggleIsFetching, toggleIsFollowingProgress,
     unfollow
 } from "./users-reducer";
 import {setAuthUserData} from "./auth-reducer";
@@ -57,7 +57,7 @@ export type ActionType = ReturnType<typeof addPostAC> | ReturnType<typeof update
     | ReturnType<typeof addMessageAC> | ReturnType<typeof updateNewMessageTextAC> | ReturnType<typeof follow>
     | ReturnType<typeof unfollow> | ReturnType<typeof setUsers> | ReturnType<typeof setCurrentPage>
     | ReturnType<typeof setTotalUsersCount> | ReturnType<typeof toggleIsFetching> | ReturnType<typeof setUserProfile>
-    | ReturnType<typeof setAuthUserData>
+    | ReturnType<typeof setAuthUserData> | ReturnType<typeof toggleIsFollowingProgress>
 
 
 
