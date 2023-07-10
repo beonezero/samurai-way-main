@@ -1,9 +1,9 @@
 import {ActionType} from "./store";
 
 export type InitialStateAuthType = {
-    userId: any
-    email: any
-    login: any
+    userId: number | null
+    email: string | null
+    login: string | null
     isAuth: boolean
 }
 
