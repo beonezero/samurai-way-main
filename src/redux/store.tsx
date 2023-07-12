@@ -2,12 +2,12 @@ import {addMessageAC, dialogsReducer, updateNewMessageTextAC} from "./dialogs-re
 import {addPostAC, profileReducer, setUserProfile, updateNewPostTextAC} from "./profile-reducer";
 import {sideBarReducer} from "./sideBar-reducer";
 import {
-    follow,
+    followSuccess,
     setCurrentPage,
     setTotalUsersCount,
     setUsers,
     toggleIsFetching, toggleIsFollowingProgress,
-    unfollow
+    unfollowSuccess
 } from "./users-reducer";
 import {setAuthUserData} from "./auth-reducer";
 
@@ -54,8 +54,8 @@ type StoreType = {
 }
 
 export type ActionType = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC>
-    | ReturnType<typeof addMessageAC> | ReturnType<typeof updateNewMessageTextAC> | ReturnType<typeof follow>
-    | ReturnType<typeof unfollow> | ReturnType<typeof setUsers> | ReturnType<typeof setCurrentPage>
+    | ReturnType<typeof addMessageAC> | ReturnType<typeof updateNewMessageTextAC> | ReturnType<typeof followSuccess>
+    | ReturnType<typeof unfollowSuccess> | ReturnType<typeof setUsers> | ReturnType<typeof setCurrentPage>
     | ReturnType<typeof setTotalUsersCount> | ReturnType<typeof toggleIsFetching> | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setAuthUserData> | ReturnType<typeof toggleIsFollowingProgress>
 
