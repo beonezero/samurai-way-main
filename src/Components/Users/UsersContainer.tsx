@@ -4,7 +4,7 @@ import {AppStateType} from "../../redux/redux-store";
 import {
     followSuccess, getUsers,
     InitialStateType,
-    setCurrentPage, toggleIsFollowingProgress,
+    setCurrentPage,
     unfollowSuccess,} from "../../redux/users-reducer";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
