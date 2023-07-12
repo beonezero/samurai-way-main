@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./ProfileInfo.module.css"
 import Preloader from "../../common/Preloader/Preloader";
-import {mapStateToPropsType, ProfileType} from "../ProfileContainer";
+import { ProfileType} from "../ProfileContainer";
 
 type ProfileInfoPropsType = {
     profile: ProfileType | null
