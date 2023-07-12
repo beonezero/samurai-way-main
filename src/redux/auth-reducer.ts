@@ -1,4 +1,6 @@
 import {ActionType} from "./store";
+import {authAPI} from "../API/api";
+import {Dispatch} from "redux";
 
 export type InitialStateAuthType = {
     userId: number | null
@@ -27,3 +29,13 @@ export const authReducer = (state: InitialStateAuthType = initialState, action: 
 export const setAuthUserData = (userId: number, email: string, login: string) => {
     return {type: "SET_USER_DATA", data: {userId, email, login}} as const
 }
+export const getAuthUserData = () => (dispatch: Dispatch) => {
+    authAPI.me()
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                const {id, email, login} = response.data.data
+                dispatch(setAuthUserData(id, email, login))
+            }
+        })
+}
+
