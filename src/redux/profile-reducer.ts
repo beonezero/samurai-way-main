@@ -1,7 +1,7 @@
 import {ActionType} from "./store";
-import {ProfileType} from "../Components/Profile/ProfileContainer";
 import {Dispatch} from "redux";
 import {usersAPI} from "../API/api";
+import {ProfileType} from "../Components/Profile/ProfileContainer";
 
 export type PostsType = {
     id: number
@@ -19,12 +19,16 @@ const initialState = {
         {id: 5, message: "Are you ready?", likesCount: 27},
         {id: 6, message: "What do you think?", likesCount: 106},
         {id: 7, message: "Good morning!!", likesCount: 80}
-    ] as PostsType[],
+    ],
     newPostText: "",
     profile: null
 }
 
-export type InitialStateProfileType = typeof initialState
+export type InitialStateProfileType = {
+    posts: PostsType[]
+    newPostText: string
+    profile: any
+}
 
 export const profileReducer = (state: InitialStateProfileType = initialState, action: ActionType): InitialStateProfileType => {
     switch (action.type) {
