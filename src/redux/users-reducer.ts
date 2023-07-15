@@ -4,7 +4,7 @@ import {Dispatch} from "redux";
 
 export type UserType = {
     "name": string
-    "id": number,
+    "id": number
     "uniqueUrlName": null
     "photos": {
         "small": string
