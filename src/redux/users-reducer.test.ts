@@ -2,7 +2,7 @@ import {
     followSuccess,
     InitialStateType,
     setCurrentPage, setTotalUsersCount,
-    setUsers,
+    setUsers, toggleIsFetching, toggleIsFollowingProgress,
     unfollowSuccess,
     usersReducer
 } from "./users-reducer";
@@ -146,15 +146,75 @@ test("change TotalUsersCount", () => {
         const initialState: InitialStateType = {
             users: [],
             pageSize: 5,
-            totalUsersCount: 0,
+            totalUsersCount: 1,
             currentPage: 2,
             isFetching: true,
             followingInProgress: []
         };
 
-        const action = setTotalUsersCount(2)
+        const action = setTotalUsersCount(1)
         const endState = usersReducer(initialState, action)
 
-        expect(endState.currentPage).toBe(2)
+        expect(endState.totalUsersCount).toBe(1)
+    }
+)
+
+test("IsFetching", () => {
+
+        const user = [{
+            "name": "Niakhai",
+            "id": 3,
+            "uniqueUrlName": null,
+            "photos": {
+                "small": "photos.by",
+                "large": "photos.by"
+            },
+            "status": true,
+            "followed": true
+        }]
+
+        const initialState: InitialStateType = {
+            users: [],
+            pageSize: 5,
+            totalUsersCount: 1,
+            currentPage: 2,
+            isFetching: true,
+            followingInProgress: []
+        };
+
+        const action = toggleIsFetching(false)
+        const endState = usersReducer(initialState, action)
+
+        expect(endState.isFetching).toBe(false)
+    }
+)
+
+test("followingInProgress", () => {
+
+        const user = [{
+            "name": "Niakhai",
+            "id": 3,
+            "uniqueUrlName": null,
+            "photos": {
+                "small": "photos.by",
+                "large": "photos.by"
+            },
+            "status": true,
+            "followed": true
+        }]
+
+        const initialState: InitialStateType = {
+            users: user,
+            pageSize: 5,
+            totalUsersCount: 1,
+            currentPage: 2,
+            isFetching: true,
+            followingInProgress: []
+        };
+
+        const action = toggleIsFollowingProgress(true, 3)
+        const endState = usersReducer(initialState, action)
+
+        expect(endState.followingInProgress).toStrictEqual([3])
     }
 )
