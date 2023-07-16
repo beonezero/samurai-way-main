@@ -2,11 +2,11 @@ import React from 'react';
 import './App.css';
 import Navbar from "./Components/Navbar/Navbar";
 import {Route} from "react-router-dom";
-import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
 import UsersContainer from "./Components/Users/UsersContainer";
 import HeaderContainer from "./Components/Header/HeaderContainer";
 import ProfileContainer from "./Components/Profile/ProfileContainer";
 import {Login} from "./Components/Login/Login";
+import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 
 const App = () => {
 
