@@ -1,5 +1,5 @@
 import {addMessageAC, dialogsReducer, updateNewMessageTextAC} from "./dialogs-reducer";
-import {addPostAC, profileReducer, setUserProfile, updateNewPostTextAC} from "./profile-reducer";
+import {addPostAC, profileReducer, setStatusProfile, setUserProfile, updateNewPostTextAC} from "./profile-reducer";
 import {sideBarReducer} from "./sideBar-reducer";
 import {
     followSuccess,
@@ -57,7 +57,7 @@ export type ActionType = ReturnType<typeof addPostAC> | ReturnType<typeof update
     | ReturnType<typeof addMessageAC> | ReturnType<typeof updateNewMessageTextAC> | ReturnType<typeof followSuccess>
     | ReturnType<typeof unfollowSuccess> | ReturnType<typeof setUsers> | ReturnType<typeof setCurrentPage>
     | ReturnType<typeof setTotalUsersCount> | ReturnType<typeof toggleIsFetching> | ReturnType<typeof setUserProfile>
-    | ReturnType<typeof setAuthUserData> | ReturnType<typeof toggleIsFollowingProgress>
+    | ReturnType<typeof setAuthUserData> | ReturnType<typeof toggleIsFollowingProgress>| ReturnType<typeof setStatusProfile>
 
 
 
@@ -112,7 +112,7 @@ export const store: StoreType = {
     },
     dispatch(action: ActionType) {
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
-        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        // this._state.profilePage = profileReducer(this._state.profilePage, action)
         this._state.sideBar = sideBarReducer(this._state.sideBar, action)
 
         this._callSubscriber(this._state)

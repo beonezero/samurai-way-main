@@ -23,7 +23,8 @@ test("add post", () => {
             {id: 7, message: "Good morning!!", likesCount: 80}
         ] as PostsType[],
         newPostText: "",
-        profile: null
+        profile: null,
+        status: ""
     }
 
     const action = addPostAC()
@@ -46,7 +47,8 @@ test("update post text", () => {
             {id: 7, message: "Good morning!!", likesCount: 80}
         ] as PostsType[],
         newPostText: "",
-        profile: null
+        profile: null,
+        status: ""
     }
 
     const action = updateNewPostTextAC("Hello! were are you from?")
@@ -79,7 +81,8 @@ test("update post text", () => {
             {id: 7, message: "Good morning!!", likesCount: 80}
         ],
         newPostText: "",
-        profile: null
+        profile: null,
+        status: ""
     }
 
     const user: ProfileType = {
