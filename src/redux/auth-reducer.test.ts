@@ -8,7 +8,7 @@ test("add data and change isAuth default", () => {
         isAuth: false
     };
 
-    const action = setAuthUserData(3, "neakhai@gmail.com", "microla6")
+    const action = setAuthUserData(3, "neakhai@gmail.com", "microla6", true)
     const endState = authReducer(initialState, action)
 
     expect(endState.email).toBe("neakhai@gmail.com")

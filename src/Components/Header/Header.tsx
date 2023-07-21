@@ -9,7 +9,7 @@ const Header = (props: HeaderContainerPropsType) => {
             <img src="https://cdn.icon-icons.com/icons2/2351/PNG/512/logo_vk_vkontakte_icon_143187.png" alt=""/>
             <div className={s.loginBlock}>
                 {
-                    props.isAuth ? props.login :
+                    props.isAuth ? <div>{props.login} - <button onClick={props.logout}>Log out</button></div> :
                         <NavLink to={"/login"}>Login</NavLink>
                 }
             </div>
